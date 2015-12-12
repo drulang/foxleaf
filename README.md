@@ -15,3 +15,21 @@ It's really easy to find art for popular books, but not for smaller books.  The 
 * PostgreSQL Extensions - Full Text Search
 * Redis
   * Counters for various page views. In the future will use the key expiration to rate limit users, chat system, other things
+
+# Screenshots
+
+![Homepage](https://raw.githubusercontent.com/drulang/foxleaf/master/screenshots/Screen%20Shot%202015-09-29%20at%2012.37.08%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.38.26%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.42.55%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.46.00%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.46.24%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.46.54%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.47.12%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.48.23%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.50.40%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%207.51.24%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%208.22.00%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%208.22.53%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%208.23.06%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%208.23.49%20PM.png)
+![](https://github.com/drulang/foxleaf/blob/master/screenshots/Screen%20Shot%202015-09-30%20at%208.24.38%20PM.png)
