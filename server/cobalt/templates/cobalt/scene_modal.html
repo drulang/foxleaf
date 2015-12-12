@@ -1,0 +1,39 @@
+<!-- Add Scene Modal -->
+<div class="modal fade" id="add-scene-modal" tabindex="-1" role="dialog" aria-labelledby="add-scene-modalLabel" aria-hidden="true">
+  <div class="modal-dialog add-content-modal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!-- Add Scene Header -->
+        <div id="scene-modal-header-conent">
+            <h5 id="add-scene-modal-title"  class="modal-title" id="add-scene-modalLabel">Add Scene to...</h5>
+            <div class="book-title">
+                <h4 id="add-scene-modal-title"  class="modal-title" id="add-scene-modalLabel"><i>{{ book.title }}</i></h4>
+                <a href="javascript:;" onclick="changeModalContentToBookSelection();">Or select a different book</a>
+            </div>
+        </div>
+        <!-- End Add Scene Header -->
+        <!-- Select Book Header -->
+        <div id="book-modal-header-content" style="display:none;">
+            <h4 id="add-scene-modal-title"  class="modal-title" id="add-scene-modalLabel">Select a book!</h4>
+        </div>
+        <!-- End Select Book Header -->
+      </div>
+      <!-- End Modal Header -->
+      <!-- Add Scene Modal Body -->
+      <div id="scene-modal-body" class="modal-body">
+          <p id="media-error" class="text-danger"></p>
+          {% include 'cobalt/scene_form.html' %}
+      </div>
+      {% include 'cobalt/book_modal_body.html' %}
+      <!-- End Select Book Modal Body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearLogin();">Close</button>
+        <button id="add-scene-save-button" type="button" class="btn btn-primary" onclick="createScene();">Save</button>
+        <button id="select-book-next-button" type="button" class="btn btn-primary" style="display:none;" onclick="changeModalContentToAddScene();">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Modal -->

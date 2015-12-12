@@ -1,0 +1,82 @@
+{% extends 'cobalt/base.html' %}
+{% load filters %}
+
+{% block body %}
+<script type="text/javascript">
+    {% if genre %}
+    mixpanel.track("Explore Books Loaded With Genre", {
+        genre: "{{ genre.name }}",
+    });
+    {% else %}
+    mixpanel.track("Explore Books Loaded");
+    {% endif %}
+</script>
+
+<!-- Main Container -->
+<div class="container main-container">
+    <!-- Genre Row -->
+    <div class="row">
+        {% for genre in genres %}
+        <div class="col-md-3 genre-col">
+            <a href="/cobalt/explore/books/{{ genre.name }}">
+            <div class="genre">
+                <img class="img-thumbnail" src="{{ genre.image_url }}">
+                <div class="overlay"></div>
+            </div>
+            <h2>{{ genre.name }}</h2>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    <!-- End Genre Row -->
+    <hr>
+    <!-- No Content Row -->
+    {% if not genre_exists %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 paper paper-vintage">
+            <p>Hmm we couldn't find this genre. <a href="mailto:hello@foxleaf.io"><i class="fa fa-send"></i> Send us a message</a> if you think it should be added!</p>
+        </div>
+    </div>
+    {% elif no_primary_content %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2 paper paper-vintage">
+            <p>Ut oh we couldn't find any books for this genre. <a href="mailto:hello@foxleaf.io"><i class="fa fa-send"></i> Send us a message</a> with books you think should be added!</p>
+        </div>
+    </div>
+    {% endif %}
+    <!-- End No Content Row -->
+    <div class="row">
+        <!-- Col 1 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_1 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Col 1-->
+
+        <!-- Col 2 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_2 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Col 2 -->
+
+        <!-- Col 3 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_3 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Col 3 -->
+
+        <!-- Column 4 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_4 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Column 4 -->
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'cobalt/base.html' %}
+
+{% if scene %}
+{% block pagedesc %}{{ scene.title }}{% endblock %}
+{% endif %}
+
+{% block body %}
+{% if scene %}
+<script type="text/javascript">
+    var bookid={{ scene.book.id }};
+    var bookTitleUrl="{{ scene.book.title_url }}";
+    mixpanel.track("Scene Page Loaded", {
+        sceneid: {{ scene.id }},
+    });
+</script>
+
+
+<div class="container main-container">
+    <div class="row">
+        <!-- Book Col -->
+        <div class="col-md-2 book-detail-col">
+            <!-- Book Row-->
+            <div class="row book-image">
+                <div class="col-md-12 book-standalone-col">
+                    {% include "cobalt/item_book.html" %} 
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Book Row -->
+        </div>
+        <!-- End Book Col -->
+        <!-- Content Col -->
+        <div class="col-md-8">
+            <div class="row scene-title-row">
+                <div class='col-md-12 scene-headline paper paper-curl'>
+                    <h2>{{ scene.title }}</h2>
+                    <h3><small>A scene from <i>{{ book.title }}</i></small></h3>
+                    <div class="thumbnail-actions-overlay">
+                        {% include 'cobalt/action_overlay_scene.html' %}
+                    </div>
+                    <p>{{ scene.text }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs custom">
+                        <li id="scene-art-tab" role="presentation" class="active"><a href="javascript:;">Art</a></li>
+                        <li id="scene-discussion-tab" role="presentation"><a href="javasceript:;">Discussion</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- art content row -->
+            {% if scene_col_0|length == 0%}
+            <div class="row scene-art-row">
+                <div class="col-md-10  col-md-offset-1 paper paper-green empty-scene">
+                    <a class="btn btn-success" href="javascript:void(0);" onclick="triggerAddArtModal();">Add some art and earn 5 <i class="fa fa-leaf text-success"></i></a>
+                </div>
+            </div>
+            {% endif %}
+            <div class="row image-wall-row">
+                <!-- Art Col 0 -->
+                <div class="col-md-4 scene-art-row">
+                    {% for art in scene_col_0 %}
+                    {% include 'cobalt/art_wall_img.html' %}
+                    {% endfor %}
+                </div>
+                <!-- Art Col 1 -->
+                <div class="col-md-4">
+                    {% for art in scene_col_1 %}
+                    {% include 'cobalt/art_wall_img.html' %}
+                    {% endfor %}
+                </div>
+                <!-- Art Col 2 -->
+                <div class="col-md-4">
+                    {% for art in scene_col_2 %}
+                    {% include 'cobalt/art_wall_img.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- end content row -->
+            <!-- art discussion row -->
+            <div class="row scene-discussion-row" style="display: none;">
+                <div class="col-md-10  col-md-offset-1 paper paper-blue">
+                    Coming soon!
+                </div>
+            </div>
+            <!-- end art discussion row -->
+        </div>
+        <!-- End Book Col -->
+        <!-- Suggestion Col -->
+        <div class="col-md-2 action-row">
+            <a id="add-scene-link" href="javaScript:void(0);"><i class="fa fa-plus"></i> Add Scene</a>
+            <a id="add-art-link" href="javaScript:void(0);"><i class="fa fa-plus"></i> Add My Art</a>
+            {% if user == scene.user %}
+            <a href="{% url 'index' %}scene/{{ scene.id }}"><i class="fa fa-edit"></i> Edit Scene</a>
+            {% endif %}
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+{% else %}
+<!-- No Scene Row -->
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="alert alert-danger">
+            <b>Error</b> No scene found.
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="alert alert-info">
+            If you'd like to see this scene here then send us an email to <strong>hello@castleleaf.com</strong>
+        </div>
+    </div>
+</div>
+<!-- End No Book Row -->
+{% endif %}
+{% endblock %}

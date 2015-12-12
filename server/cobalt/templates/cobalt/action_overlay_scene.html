@@ -1,0 +1,14 @@
+{% load filters %}
+<ul class="actions-overlay">
+    {% if scene.view_count %}
+    <li><i class="fa fa-eye"> {{ scene.view_count }}</i></li>
+    {% else %}
+    <li><i class="fa fa-eye"> 0</i></li>
+    {% endif %}
+    {% if scene|userfavoritedscene:user %}
+    <li><i id="scene-heart-{{scene.id}}" class="fa fa-heart favorited" onclick="unfavoriteScene({{scene.id }});" ></i> <span>{{ scene.favorite_cnt }}</span></li>
+    {% else %}
+    <li><i id="scene-heart-{{scene.id}}" class="fa fa-heart-o notfavorited" onclick="favoriteScene({{ scene.id }});" ></i> <span>{{ scene.favorite_cnt }}</span></li>
+    {% endif %}
+    <li><i class="fa fa-comments"> {{ scene.comment_cnt }}</i></li>
+</ul>

@@ -1,0 +1,37 @@
+{% extends 'cobalt/base.html' %}
+
+{% block body %}
+<!-- End Search Row -->
+<div class="container main-container">
+    <div class="row">
+        {% for book in col_1 %}
+        <div class="col-md-3 item-footer">
+            <a href="{% url 'index' %}coffee/cobalt/book/{{ book.id}}"><img class="book-display" src="{{ book.coverurl }}"></a>
+            <p width="100px;">{{ book.title }}</p>
+        </div>
+        {% endfor %}
+
+        {% for book in col_2 %}
+        <div class="col-md-3 item-footer">
+            <a href="{% url 'index' %}coffee/cobalt/book/{{ book.id}}"><img class="book-display" src="{{ book.coverurl }}"></a>
+            <p width="100px;">{{ book.title }}</p>
+        </div>
+        {% endfor %}
+
+        {% for book in col_3 %}
+        <div class="col-md-3 item-footer">
+            <a href="{% url 'index' %}coffee/cobalt/book/{{ book.id}}"><img class="book-display" src="{{ book.coverurl }}"></a>
+            <p width="100px;">{{ book.title }}</p>
+        </div>
+        {% endfor %}
+
+        {% for book in col_4 %}
+        <div class="col-md-3 item-footer">
+            <a href="{% url 'index' %}coffee/cobalt/book/{{ book.id}}"><img class="book-display" src="{{ book.coverurl }}"></a>
+            <p width="100px;">{{ book.title }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock %}

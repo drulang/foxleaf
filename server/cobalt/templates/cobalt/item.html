@@ -1,0 +1,16 @@
+{% load filters %}
+{% with item|classname as modelclass %}
+{% if modelclass == "Art" %}
+    {% with art=item %}
+    {% include 'cobalt/item_art.html' %}
+    {% endwith %}
+{% elif modelclass == "Book" %}
+    {% with book=item %}
+    {% include 'cobalt/item_book.html' %}
+    {% endwith %}
+{% elif modelclass == "Scene" %}
+    {% with scene=item %}
+    {% include 'cobalt/item_scene.html' %}
+    {% endwith %}
+{% endif %}
+{% endwith %}

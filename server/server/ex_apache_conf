@@ -1,0 +1,14 @@
+WSGIScriptAlias / /opt/bookscene/server/server/wsgi.py
+WSGIPythonPath /opt/bookscene/server
+
+<Directory /opt/bookscene/server/server>
+  <Files wsgi.py>
+  </Files>
+</Directory>
+
+Alias /static/ "/opt/bookscene/server/cobalt/static/"
+
+<Directory "/opt/bookscene/server/cobalt/static">
+   Order deny,allow
+   Allow from all
+</Directory>

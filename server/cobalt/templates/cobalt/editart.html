@@ -1,0 +1,61 @@
+{% extends 'cobalt/base.html' %}
+{% load filters %}
+
+{% block body %}
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-3">
+            <img class="thumbnail" width="100%" src="{% url 'index' %}artimage/{{ userart.title_url }}-{{userart.id}}">
+            <div class="paper paper-sm paper-blue">
+                <span class="text-info">It may take a few minutes for your image to update</span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p class="lead">Edit Art</p>
+            <form id="edit-art-form" method="POST" action="{% url 'index' %}art/{{ userart.id }}" enctype="multipart/form-data" onsubmit="return validateEditArtForm();">
+               {% if error %}
+               <div class="alert alert-danger">
+                   <b>Ut oh!</b> {{ error }}
+               </div>
+               {% endif %}
+               <!-- Image File -->
+               <div class="form-group">
+                   <label for="art-image-file">Art Image</label>
+                   <input id="art-image-file" name="art-image" type="file"/>
+                   <span id="helpBlock" class="help-block">Currently supported formats are JPEG and PNG</span>
+                   <div id="file-list">
+                       <!-- The file list will be shown here -->
+                   </div>
+               </div>
+                <!-- Art Type -->
+                <div class="row">
+                    <div id="" class="form-group col-xs-6">
+                        <label>Art Type</label>
+                        {% include 'cobalt/art_type_select.html' %}
+                    </div>
+                </div>
+                <!-- Art Title-->
+                <div id="art-title-form-group" class="form-group">
+                    <input id="art-title" placeholder="Art Title" name="artTitle" type="text" class="form-control" value="{{ userart.title }}">
+                </div>
+                <!-- Description -->
+                <div id="end-page-form-group" class="form-group">
+                    <label for="art-descriptoin">Art Description</label>
+                    <textarea id="art-text" class="form-control" rows="2" name="artText" placeholder="(Optional)">{{ userart.description }}</textarea>
+                </div>
+                <!-- NSFW -->
+                 <div class="checkbox">
+                     <label>
+                         {% if userart.nsfw %}
+                         <input id="art-nsfw" type="checkbox" name="nsfw" checked='true'> Mature Content</input>
+                         {% else %}
+                         <input id="art-nsfw" type="checkbox" name="nsfw"> Mature Content</input>
+                         {% endif %}
+                     </label>
+                 </div>
+                 <input id="add-art-form-button" type="submit" class="btn btn-primary" value="Submit"/>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

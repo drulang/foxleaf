@@ -1,0 +1,171 @@
+{% extends 'cobalt/base.html' %}
+
+{% block body %}
+<script type="text/javascript">
+    mixpanel.track("Private Profile Page Loaded");
+</script>
+<div class="container main-container">
+    <!-- Email Alert Row -->
+    {% if not user.emailconfirmed %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-9">
+            <div id="email-confirmation-alert" class="alert alert-warning">
+                <p>Please confirm your email address.  An email was sent to <b>{{ user.email }}</b>.</p>
+                <p>If you didn't receive it we can <a href="#" onclick="resendEmailVerification();">resend it</a>.</p>
+            </div>
+        </div>
+    </div>
+    {% endif %} 
+    <!-- End Email Alert Row -->
+    <div class="row profile-nav">
+        <div class="col-md-offset-2 col-md-5">
+            <ul class="nav nav-tabs">
+              <li id="profile-form-tab" role="presentation" class="active"><a id="profile-form-link"href="#">Profile</a></li>
+              <li id="password-form-tab" role="presentation"><a id="password-form-link" href="#">Password</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row profile-form-row">
+        <!-- Form Row -->
+        <div class="col-md-offset-2 col-md-5">
+            <!-- Password form -->
+            <form id="password-form" class="form-horizontal" style="display:none;" method="POST" action="{% url 'index' %}profile/" onsubmit="return validatePasswordChange();">
+                <!-- Password -->
+                <div id="change-password-form-group" class="form-group">
+                    <p id="password-form-error" class="text-danger"></p>
+                    <label class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9">
+                      <input id="change-password" type="password" class="form-control" name="password">
+                    </div>
+                </div>
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Confirm Password</label>
+                    <div class="col-sm-9">
+                      <input id="change-confirm-password" type="password" class="form-control">
+                    </div>
+                </div>
+                <!-- Save -->
+                <div id="save-form-group" class="form-group">
+                  <label for="save" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                    </div>
+                </div>
+            </form>
+            <!-- End Password Form -->
+            <!-- Profile Form -->
+            <form id="profile-form" class="form-horizontal" method="POST" action="{% url 'index' %}profile/" >
+                {% if not user.profile_sort_of_complete %}
+                <div class="paper paper-green paper-sm text-center">
+                    Complete your profile and earn 2 <i class="fa fa-leaf text-success"></i>
+                </div>
+                {% endif %}
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static">{{ user.email }}</p>
+                    </div>
+                </div>
+                <!-- Username -->
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Username</label>
+                    <div class="col-sm-9">
+                        <p id="username-p" class="form-control-static">{{ user.username}}</p>
+                    </div>
+                </div>
+                <!-- First Name -->
+                <div id="fname-form-group" class="form-group">
+                  <label for="fname" class="col-sm-3 control-label">First Name</label>
+                  <div class="col-sm-9">
+                      {% if user.fname %}
+                      <input id="fname" type="text" class="form-control" name="fname" value="{{ user.fname }}">
+                      {% else %}
+                      <input id="fname" type="text" class="form-control" name="fname">
+                      {% endif %}
+                  </div>
+                </div>
+                <!-- Last Name -->
+                <div id="lname-form-group" class="form-group">
+                  <label for="lname" class="col-sm-3 control-label">Last Name</label>
+                  <div class="col-sm-9">
+                      {% if user.lname %}
+                      <input id="lname" type="text" class="form-control" name="lname" value="{{ user.lname }}">
+                      {% else %}
+                      <input id="lname" type="text" class="form-control" name="lname">
+                      {% endif %}
+                  </div>
+                </div>
+                <!-- Location Name -->
+                <div id="location-form-group" class="form-group">
+                  <label for="location" class="col-sm-3 control-label">Location</label>
+                  <div class="col-sm-9">
+                      {% if user.location %}
+                      <input id="location" type="text" class="form-control" name="location" value="{{ user.location}}">
+                      {% else %}
+                      <input id="location" type="text" class="form-control" name="location" placeholder="i.e. New York, NY">
+                      {% endif %}
+                  </div>
+                </div>
+                <!-- Website -->
+                <div id="website-form-group" class="form-group">
+                  <label for="website" class="col-sm-3 control-label">Website</label>
+                  <div class="col-sm-9">
+                      {% if user.website %}
+                      <input id="website" type="text" class="form-control" name="website" value="{{ user.website }}">
+                      {% else %}
+                      <input id="website" type="text" class="form-control" name="website">
+                      {% endif %}
+                      
+                  </div>
+                </div>
+                <!-- Bio -->
+                <div id="bio-form-group" class="form-group">
+                  <label for="bio" class="col-sm-3 control-label">Bio</label>
+                  <div class="col-sm-9">
+                      {% if request.user.bio %}
+                      <textarea id="bio" class="form-control" rows="9" name="bio"></textarea>
+                      {% else %}
+                      <textarea id="bio" class="form-control" rows="9" name="bio">{{ user.bio }}</textarea>
+                      {% endif %}
+                  </div>
+                </div>
+                <!-- Save -->
+                <div id="save-form-group" class="form-group">
+                  <label for="save" class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        <button id="update-profile-btn" type="submit" class="btn btn-primary">Update Profile</button>
+                    </div>
+                </div>
+            </form>
+       </div><!-- End Col -->
+        <!-- Profile Image Col-->
+        <div class="col-md-offset-1 col-md-3">
+            <h5>Your Profile Image</h5>
+            <div class="profile-image" style="width:200px;">
+                {% if profile_image_processing %}
+                <div class="alert alert-warning">
+                    <p>Your image is processing! <a href="{% url 'index' %}profile">Refresh</a></p>
+                </div>
+                <img class="thumbnail" width="200px" height="200px" src="/static/cobalt/img/noprofileimage.png">
+                {% else %}
+                <img class="thumbnail" width="200px" height="200px" src="{% url 'index' %}profileimage">
+                {% endif %}
+            </div>
+            <form action="{% url 'index' %}profileimage/" method="POST" enctype="multipart/form-data" onsubmit="return profileImageFormValid();">
+                {% csrf_token %}
+                <p id="profile-image-error" class="text-danger"></p>
+                <input id="profile-image-file" name="profile-image" type="file">
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+        <!-- End Profile Image Col-->
+    </div><!-- End Row -->
+</div><!-- End Main Container -->
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="/static/cobalt/cobalt-profile.js"></script>
+{% endblock %}

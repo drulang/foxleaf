@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+<url>
+  <loc>{{ baseurl }}</loc>
+  <lastmod>{{ date }}</lastmod>
+</url>
+
+<url>
+  <loc>{{ baseurl }}search</loc>
+  <lastmod>{{ date }}</lastmod>
+</url>
+
+<!-- Explore Books -->
+{% for genre in genres %}
+<url>
+    <loc>{{ baseurl }}explore/books/{{ genre.name }}</loc>
+  <lastmod>{{ date }}</lastmod>
+</url>
+{% endfor %}
+<!-- End Explore Books -->
+
+<!-- Books -->
+{% for book in books %}
+<url>
+    <loc>{{ baseurl }}book/{{ book.title_url }}</loc>
+  <lastmod>{{ date }}</lastmod>
+</url>
+{% endfor %}
+<!-- End Books -->
+
+
+<!-- Scenes -->
+{% for scene in  scenes%}
+<url>
+    <loc>{{ baseurl }}book/{{ scene.book.title_url}}/scene/{{ scene.title_url }}</loc>
+  <lastmod>{{ date }}</lastmod>
+</url>
+{% endfor %}
+<!-- End Scenes -->
+
+<!-- Art -->
+{% for an_art in art%}
+<url>
+    <loc>{{ baseurl }}book/{{ an_art.book.title_url}}/art/{{ an_art.title_url }}</loc>
+  <lastmod>{{ date }}</lastmod>
+</url>
+{% endfor %}
+<!-- End Scenes -->
+
+
+</urlset>

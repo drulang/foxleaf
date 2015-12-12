@@ -1,0 +1,52 @@
+<form id="add-scene-form" method="POST" action="{% url 'index' %}scene/{{ userscene.id }}">
+    <!-- Scene Type -->
+    <div class="row">
+        <div id="" class="form-group col-xs-6">
+            <label>Scene Type</label>
+            <select name="sceneType" id="scene-type" class="form-control">
+              <option selected disabled hidden value=''></option>
+              <option value="gnrc" {% if userscene.scenetype.scenetypcd == 'gnrc' %}selected{% endif %}>General Scene</option>
+              <option value="char" {% if userscene.scenetype.scenetypcd == 'char' %}selected{% endif %}>Character</option>
+              <option value="map" {% if userscene.scenetype.scenetypcd == 'map'%}selected{% endif %}>Map</option>
+            </select>
+        </div>
+    </div>
+    <!-- Scene Title-->
+    <div id="scene-title-form-group" class="form-group">
+        <input id="scene-title" placeholder="Scene Title" name="title" type="text" class="form-control" value="{{ userscene.title }}">
+    </div>
+    <div class="row">
+        <!-- Start Page-->
+        <div id="start-page-form-group" class="form-group col-xs-6">
+            {% if userscene.startpage %}
+            <input id="start-page" name="startPage" placeholder="Start Page" type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{userscene.startpage}}">
+            {% else %}
+            <input id="start-page" name="startPage" placeholder="Start Page" type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            {% endif %}
+        </div>
+        <!-- End Page-->
+        <div id="end-page-form-group" class="form-group col-xs-6">
+            {% if userscene.endpage %}
+            <input id="end-page" name="endPage" placeholder="End Page" type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="{{ userscene.endpage }}">
+            {% else %}
+            <input id="end-page" name="endPage" placeholder="End Page" type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Text -->
+    <div id="end-page-form-group" class="form-group">
+        <label for="scene-text">Scene Text</label>
+        <textarea id="scene-text" class="form-control" rows="5" name="text">{{ userscene.text }}</textarea>
+    </div>
+    <!-- NSFW -->
+     <div class="checkbox">
+         <label>
+             {% if userscene.nsfw %}
+             <input id="scene-nsfw" type="checkbox" name="nsfw" checked='true'> Contains Mature Content</input>
+             {% else %}
+             <input id="scene-nsfw" type="checkbox" name="nsfw"> Contains Mature Content</input>
+             {% endif %}
+         </label>
+     </div>
+     <input id="add-scene-form-button" type="submit" class="btn btn-primary" value="Submit"/>
+</form>

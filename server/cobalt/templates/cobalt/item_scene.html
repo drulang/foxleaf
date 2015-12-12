@@ -1,0 +1,20 @@
+{% load filters %}
+<div class="col-md-12 item-col paper" id="scene-col-{{ scene.id }}">
+    <a href="{% url 'index'%}book/{{ scene.book.title_url}}/scene/{{ scene.title_url }}"><img src="{% url 'index' %}scene/{{ scene.title_url }}/topart" class="art-img"></a>
+    <div class="thumbnail-actions-overlay">
+        {% include 'cobalt/action_overlay_scene.html' %}
+    </div>
+    <h5>{{ scene.title }}</h5>
+    <p>{{ scene.text }}</h5>
+    <div class="item-footer">
+        <a href="{% url 'index' %}{{ scene.book.url }}" title="{{ scene.book.title }}"><p><i class="fa fa-book"> {{ scene.book.title }}</i></p></a>
+        <a href="{% url 'index' %}book/{{ scene.book.title_url }}/scene/{{ scene.title_url }}"><p><i class="fa fa-file-text-o"> {{ scene.title }}</i></span></p></a>
+    </div>
+    {% if scene.user == user %}
+    <div class="item-footer edit-content-footer">
+        <ul>
+            <li><a href="{% url 'index' %}scene/{{ scene.id }}" title="Edit Scene"><p><i class="fa fa-edit"> Edit</i></span></p></a></li>
+        <li><a href="javascript:;" title="Delete Scene" onclick="deleteScene({{ scene.id }});"><p><i class="fa fa-remove"> Delete</i></span></p></a></li>
+        </ul> </div>
+    {% endif %}
+</div>

@@ -1,0 +1,15 @@
+{% extends 'cobalt/base.html' %}
+
+{% block body %}
+<div class="container main-container">
+    {% if success %}
+    <div class='alert alert-success'>
+        <b>Confirmed! Thank you.</b>
+    </div>
+    {% else %}
+    <div class='alert alert-danger'>
+        <b>Error</b> Unable to confirm email at this time. If you're continuing to have trouble please send an email to hello@foxleaf.io
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

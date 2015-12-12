@@ -1,0 +1,729 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    /*
+    background-color: #554c3f;
+    background-image: url(http://www.transparenttextures.com/patterns/wild-oliva.png);
+    */
+    background-image: -webkit-radial-gradient(10% 0, farthest-side ellipse, rgba(188,181,152,0.4), rgba(252,250,240,0.89), rgba(220,225,230,0.9));
+}
+
+.headline {
+    font-family: "Cinzel Decorative";
+    font-size: 30px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.text-display {
+    font-family: "Cinzel Decorative";
+}
+
+.keyword{
+    font-family: "Cinzel Decorative";
+    font-size: 50px;
+    text-align: center;
+}
+
+.main-jumbotron {
+    background: url('/static/cobalt/img/book.jpg');
+    background-size: cover;
+    margin-top: -20px;
+    height: 400px;
+}
+
+.main-jumbotron .row{
+    margin-top: 45px;
+}
+
+
+.main-container {
+    margin-bottom: 110px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: LightGray;
+    text-align: center;
+}
+
+/*
+ * Top Navbar
+ */
+
+.search-col {
+    margin-bottom: 30px;
+}
+
+/*
+ * Relevance Navbar
+ */
+.relevance-row {
+    bottom-margin: 20px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: LightGray;
+    margin-bottom: 25px;
+}
+
+/* Profile Nav */
+.profile-nav {
+    margin-bottom: 15px;
+}
+
+/* 
+ * Art/Scene View
+ */
+
+.book-col{
+    text-align:center;
+}
+.media img {
+    -webkit-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.49);
+    -moz-box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.49);
+    box-shadow: 10px 10px 5px -6px rgba(0,0,0,0.49);
+}
+
+.media-meta {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.media-meta span {
+    margin-left: 8px;
+    display: block; 
+}
+
+.media-image {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+/*
+ * Art Action Overlay
+ */
+
+.thumbnail-actions-overlay {
+    height: 25px;
+    text-align: center;
+}
+
+.thumbnail-actions-overlay ul {
+    margin-top: 8px;
+    padding-left: 0px;
+}
+
+.user-actions-overlay {
+    padding-left: 0px;
+    margin-top: 15px;
+}
+
+/* Book Action Overlay */
+.book-actions-overlay {
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.book-actions-overlay ul {
+    padding-left: 10px;
+    background-color: white;
+    -webkit-border-bottom-right-radius: 2px;
+    -moz-border-radius-bottomright: 2px;
+    border-bottom-right-radius: 2px;
+    /* Shadow */
+    -webkit-box-shadow: 2px 2px 5px 0px rgba(79,77,79,1);
+    -moz-box-shadow: 2px 2px 5px 0px rgba(79,77,79,1);
+    box-shadow: 2px 2px 5px 0px rgba(79,77,79,1);
+}
+
+.actions-overlay li {
+    color: gray;
+    margin-right: 10px;
+    display:inline-block;
+    font-size: 14px;
+}
+.actions-overlay .glyphicon {
+    margin-right: 3px;
+}
+
+.comment-action {
+    font-size: 11px;
+}
+
+.comment-action .upvote {
+    margin-left: 5px;
+}
+
+.comment-action li {
+    color: gray;
+    margin-right: 8px;
+    display:inline-block;
+ }
+
+#profile-image-file {
+    margin-bottom: 12px;
+}
+
+.profile-form-row .text-danger{
+    text-align: center;
+}
+
+/* Book Detail */
+
+.book-detail-col {
+    text-align: center;
+}
+
+.book-detail-col .title {
+    margin-bottom: 20px;
+}
+
+.row .book-image {
+    text-align:center;
+    margin-bottom: 10px;
+}
+
+.character-thumbnail {
+    text-align: center;
+}
+
+.book-scene-col p {
+    margin-left: 15px;
+    margin-top: 3px;
+}
+
+.book-scene-col .sort-by {
+    margin-top: -20px;
+    float:right;
+    margin-right: -20px;
+}
+
+.book-scene-col .media-left img {
+    width: 100px;
+    height: 100px;
+}
+
+.scene-header {
+    text-align: center;
+}
+
+.scene-header h4 {
+    margin-top: 0px;
+}
+
+.scene-header .actions-overlay {
+    padding-left: 0px;
+}
+
+.action-row a {
+    display: block;
+}
+
+.section-header {
+    text-align: center;
+    font-family: "Cinzel Decorative";
+    font-size: 30px;
+    margin-bottom: 25px;
+}
+
+.section-header hr {
+    width: 70%;
+}
+
+.book-attention {
+    text-align: center;
+}
+
+.book-display {
+    width: 156px;
+}
+
+.paper-card {
+    border-width: 0px !important;
+    padding: 0px;
+}
+
+.book-col {
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    left: -3px;
+}
+
+.book-content-col {
+    padding-left: 20px;
+    padding-right: 5px;
+}
+
+.book-content-col h4 {
+    text-align: center;
+}
+
+.book-content-col blockquote {
+    font-size: 14px;
+    padding-right: 0px;
+    padding-left: 7px;
+}
+
+.book-art-col {
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.book-art-col img {
+    height: 227px;
+    float: right;
+}
+
+.sort-by-col {
+    padding-left: 0px;
+}
+
+.sort-by-col ul {
+    float: right;
+}
+
+.book-content-nav-col {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.book-media {
+    position: relative;
+    width: 150px; /* Size of book iamge */
+}
+
+.scene-title-row {
+    text-align: center;
+}
+
+.scene-title-row h3 small {
+    font-family: "Cinzel Decorative";
+    font-size: 13px;
+}
+
+.scene-headline h2 {
+    font-family: "Cinzel Decorative";
+    font-size: 30px;
+    margin-top: 0px;
+}
+.scene-headline p {
+    margin-top: 15px;
+}
+.image-wall-row {
+    margin-top: 15px;
+}
+.image-wall-row img {
+    margin-bottom: 15px;
+    width: 100%;
+    -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+    -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+}
+
+.book-standalone-col img {
+    -webkit-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+    -moz-box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+    box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.6);
+}
+
+.art-title h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.art-title h4 {
+    margin-left: 15px;
+    margin-top: 0px;
+}
+
+.book-nav {
+    margin-top: 10px;
+}
+
+.book-nav ul {
+    padding-left: 0px;
+}
+
+.book-nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.art-wall-img {
+    position: relative;
+}
+
+.art-wall-img .artist-img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 0px;
+}
+
+.art-wall-img .artist-info {
+    position: absolute;
+    bottom: 10%;
+    left: 30%;
+}
+
+.art-wall-img .artist-info h4 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.see-through {
+    opacity: .2;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.3s;
+}
+
+.item-col {
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgray;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.item-col h5 {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.item-col p {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 13px;
+}
+
+.item-col img {
+    width: 100%;
+}
+
+.item-footer {
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: lightgray;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 0px;
+    color: gray;
+    font-size: 12px;
+}
+
+.item-footer .glyphicon {
+    margin-right: 5px;
+}
+
+.item-footer p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    margin: 0px;
+    margin-bottom: 5px;
+    padding: 0px;
+}
+
+.artist-mini-profile-row {
+    text-align: center;
+}
+
+.artist-mini-profile-row ul {
+    padding: 0px;
+
+}
+
+.custom .active a {
+    color: green;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover {
+    background-color: transparent;
+}
+.nav-tabs > li.active > a:hover {
+    background-color: white;
+}
+
+.foxleaf-logo {
+    margin-left: 5px !important;
+    margin-top: 5px !important;
+    margin-right: 5px;
+}
+
+.logo {
+    padding: 5px !important;
+}
+
+.navbar-brand img {
+    height: 100%;
+}
+
+.comment-col .media-list{
+    margin-top: 20px;
+
+}
+
+.comment-media .fa-angle-down, .comment-media .fa-angle-up{
+    font-size: 15px;
+}
+
+.comment-media .fa-minus-square-o, .comment-media .fa-plus-square-o{
+    margin-right: 5px;
+    margin-left: 2px;
+    font-size: 13px;
+}
+
+.comment-action {
+    padding: 5px;
+}
+
+.comment-media .media-left {
+    height: 48px;
+    border-left-style: dotted;
+    border-left-color: lightgray;
+    border-left-width: 1px;
+    padding-left: 5px;
+}
+
+.comment-body button {
+    margin-right: 5px;
+}
+
+.user-points a {
+    padding-right: 0px !important;
+}
+
+.user-badges a {
+    padding-right: 0px !important;
+}
+
+.profile-img-link {
+    padding: 5px !important;
+}
+
+.profile-img-link .user-profile-img {
+    height: 40px;
+    width: 40px;
+}
+
+.small-profile-img-link .user-profile-img {
+    height: 20px;
+    width: 20px;
+}
+.small-profile-img-link {
+    margin-left: -4px;
+}
+
+.small-profile-img-link img {
+    margin-bottom: 7px;
+}
+
+.notfavorited:hover {
+    color: #a94442;
+    cursor: hand;
+}
+
+.notfavorited {
+    color: #a94442;
+}
+
+.favorited {
+    color: #a94442;
+    cursor: hand;
+}
+
+.genre {
+    position: relative;
+}
+
+.genre-col {
+    margin-top: 10px;
+}
+
+.genre-col h2 {
+    text-align: center;
+    position: absolute;
+    color: white;
+    bottom: 10px;
+    padding-right: 10px; /* Helps offset bootstrap's column padding */
+    width: 100%;
+    font-family: "Cinzel Decorative";
+    font-size: 30px;
+}
+
+.genre .overlay {
+    position: absolute; 
+    top: 0; left: 0; right:0; 
+    bottom:0; 
+    background-color: rgba(0,0,0,0.5);
+}
+
+.art-scene-snippet h5 {
+    margin-top: 0px;
+}
+
+.add-content-modal .book-title {
+    text-align: center;
+}
+.add-content-modal .modal-header a  {
+    font-size: 11px;
+}
+
+.search-results-group {
+    margin-top: -17px;
+    height: 250px;
+    overflow: scroll;
+}
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+#book-search-error {
+    text-align: center;
+}
+
+.search-jumbotron {
+    background: url('/static/cobalt/img/search.jpg');
+    background-size: cover;
+    margin-top: -20px;
+}
+
+.footer-menu li {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.beta {
+    font-size: 14px;
+    color: lightgray !important;
+}
+
+#add-art-form {
+    margin-top: -15px;
+}
+
+#add-art-form hr{
+    margin-top: 0px;
+}
+
+.add-scene-button {
+    margin-left: 25px;
+}
+
+.file-alert {
+    margin-top: 7px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.file-alert .fa {
+    margin-right: 7px;
+}
+
+#helpBlock {
+    font-size: 12px;
+}
+
+#add-art-modal-title .fa-book {
+    font-size: 14px;
+}
+
+.forgot-password {
+    font-size: 11px;
+    text-align: right;
+    margin-top: -10px;
+}
+
+.empty-scene {
+    margin-top: 15px;
+}
+
+.edit-content-footer ul {
+   padding-left: 0px; 
+   margin-bottom: 0px;
+}
+.edit-content-footer li {
+    margin-right: 10px;
+    display:inline-block;
+    font-size: 14px;
+}
+
+.badge-row {
+    text-align: center;
+}
+
+.cobalt-badge { 
+    width: 80px;
+}
+
+#profile-image-error {
+    text-align: left;
+    margin-top: -10px;
+}
+
+#email-form-group #subtitle {
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.carousel-caption-inverse {
+    width: 100%;
+    position: absolute;
+    top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+#carousel-main {
+    margin-top: -20px;
+    margin-bottom: 15px;
+}
+
+.jumbotron-headline {
+    width: 100%;
+    background-image: -webkit-radial-gradient(10% 0, farthest-side ellipse, rgba(188,181,152,0.4), rgba(252,250,240,0.7), rgba(220,225,230,0.7));
+    padding-bottom: 15px;
+}
+.kickstarter .keyword {
+    color: black;
+}
+.devart-lock p{
+    text-align: center;
+}

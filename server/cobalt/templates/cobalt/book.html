@@ -1,0 +1,214 @@
+{% extends 'cobalt/base.html' %}
+{% load filters %}
+
+{% if book %}
+{% block pagedesc %}{{ book.title }}{% endblock %}
+{% endif %}
+
+{% block body %}
+{% if book %}
+<script type="text/javascript">
+    var bookid={{ book.id }};
+    var bookTitleUrl="{{ book.title_url }}";
+    mixpanel.track("Book Page Loaded", {
+        bookid: {{ book.id }},
+        booktitle: "{{ book.title }}",
+    });
+</script>
+
+<div class="container main-container">
+    <div class="row">
+        <!-- Book Col -->
+        <div class="col-md-2 book-detail-col">
+            <!-- Book Row-->
+            <div class="row book-image">
+                <div class="col-md-12">
+                    {% include "cobalt/item_book.html" %} 
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Book Row -->
+        </div>
+        <!-- End Book Col -->
+        <!-- Content Col -->
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 book-content-nav-col">
+                    <ul class="nav nav-tabs custom">
+                        <li id="book-scene-tab" role="presentation" class="active"><a href="javaScript:void(0);">Scenes</a></li>
+                        <li id="book-character-tab" role="presentation"><a href="javaScript:void(0);">Characters</a></li>
+                        <li id="book-map-tab" role="presentation"><a href="javaScript:void(0);">Maps</a></li>
+                        <li id="book-art-tab" role="presentation"><a href="javaScript:void(0);">Art</a></li>
+                        <li id="book-discussion-tab" role="presentation"><a href="javaScript:void(0);">Discussion</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 sort-by-col">
+                    <!-- Sort Menu -->
+                    <ul class="nav nav-pills sort-by">
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);" role="button" aria-expanded="false">Sort By <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="javascript:void(0);">Popular</a></li>
+                                <li><a href="javascript:void(0);">Page</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- End Sort Menu -->
+                </div>
+            </div>
+
+            <!-- ************************** -->
+            <!--        MAIN CONTENT        -->
+            <!-- ************************** -->
+
+            <!-- Book Scene Row-->
+            <div class="row book-scene-row">
+                {% for scene in scenes %}
+                <!-- Scene Col -->
+                <div class="col-md-10 col-md-offset-1 paper paper-curl-right book-scene-col">
+                    <!-- Scene -->
+                    <div class="media">
+                        <div class="media-left">
+                            <img src="{% url 'index' %}scene/{{scene.title_url}}/topart">
+                        </div>
+                        <div class="media-body">
+                            <div class="scene-header">
+                                <a href="{% url 'index' %}book/{{scene.book.title_url}}/scene/{{scene.title_url}}"><h4>{{ scene.title }}</h4></a>
+                                {% include 'cobalt/action_overlay_scene.html' %}
+                            </div>
+                            <p>{{ scene.text }}</p>
+                            <p> <i>pg. {{ scene.startpage }} - pg. {{ scene.endpage }}</i></p>
+                        </div>
+                    </div>
+                    <!-- End Scene -->
+                </div>
+                <!-- Scene Col -->
+                {% empty %}
+                <div class="col-md-10  col-md-offset-1 paper paper-green">
+                    <a class="btn btn-success" href="javascript:void(0);" onclick="triggerAddSceneModal();">Add a scene and earn 5 <i class="fa fa-leaf text-success"></i></a>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- End Book Scene Row-->
+
+            <!-- Book Character Row-->
+            <div class="row book-character-row" style="display:none;">
+                <div class="col-md-12 col-md-offset-1">
+                {% for item in characters %}
+                    <div class="col-md-5">
+                    {% include 'cobalt/item.html' %}
+                    </div>
+                {% empty %}
+                <div class="col-md-10 paper paper-green">
+                    <a class="btn btn-success" href="javascript:void(0);" onclick="triggerAddSceneModal();">Add a character and earn 5 <i class="fa fa-leaf text-success"></i></a>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+            <!-- End Book Character Row-->
+
+            <!-- Book Map Row -->
+            <div class="row book-map-row" style="display:none;">
+                <div class="col-md-12 col-md-offset-1">
+                {% for item in maps %}
+                    <div class="col-md-5">
+                    {% include 'cobalt/item.html' %}
+                    </div>
+                {% empty %}
+                <div class="col-md-10 paper paper-green">
+                    <a class="btn btn-success" href="javascript:void(0);" onclick="triggerAddSceneModal();">Add a map and earn 5 <i class="fa fa-leaf text-success"></i></a>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+            <!-- End Book Map Row -->
+
+            <!-- Book Art Row-->
+            <div class="row book-art-row" style="display:none;">
+                <div class="col-md-12 col-md-offset-1">
+                {% for item in general_art %}
+                    <div class="col-md-5">
+                    {% include 'cobalt/item.html' %}
+                    </div>
+                {% empty %}
+                <div class="col-md-10 paper paper-green">
+                    <a class="btn btn-success" href="javascript:void(0);" onclick="triggerAddArtModal();">Add some art and earn 5 <i class="fa fa-leaf text-success"></i></a>
+                </div>
+                {% endfor %}
+                </div>
+            </div>
+            <!-- End Book Art Row-->
+ 
+            <!-- Book Discussion Row-->
+            <div class="row book-discussion-row" style="display:none;">
+                <div class="col-md-10 col-md-offset-1">
+                    <div class="comment-form">
+                        <div class="form-group">
+                            <textarea placeholder="Comment..." id="comment-text-area" class="form-control" rows="3"></textarea>
+                            <span id="comment-error" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="button" onclick="postBookComment({{ book.id }});">Post</button>
+                        </div>
+                    </div>
+                    <!-- Comments -->
+                    {% for comment in book_comments %}
+                        {% include 'cobalt/comment.html' %}
+                    {% endfor %}
+                    <!-- End Comments -->
+                </div>
+            </div>
+            <!-- End Book Discussion Row-->
+
+
+            <!-- ************************** -->
+            <!-- END MAIN CONTENT -->
+            <!-- ************************** -->
+
+            <!-- Comment -->
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                </div>
+            </div>
+            <!-- End Comment -->
+        </div>
+        <!-- End Book Col -->
+        <!-- Suggestion Col -->
+        <div class="col-md-2 well action-row">
+            <a id="add-scene-link" href="javaScript:void(0);"><i class="fa fa-plus"></i> Add Scene</a>
+            <a id="add-art-link" href="javaScript:void(0);"><i class="fa fa-plus"></i> Add My Art</a>
+        </div>
+        <div class="col-md-2 well">
+            <!-- Book Image Row-->
+            <div class="row book-image">
+            </div>
+            <!-- End Book Image Row -->
+        </div>
+        <!-- End Col -->
+    </div>
+    <!-- End Row -->
+</div>
+{% else %}
+<!-- No Book Row -->
+<script type="text/javascript">
+    mixpanel.track("Book Page Loaded with no book");
+</script>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="alert alert-danger">
+            <b>Error</b> No book found.
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="alert alert-info">
+            If you'd like to see this book here then send us an email to <strong>hello@castleleaf.com</strong>
+        </div>
+    </div>
+</div>
+<!-- End No Book Row -->
+{% endif %}
+{% endblock %}

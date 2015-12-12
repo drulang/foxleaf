@@ -1,0 +1,24 @@
+{% load filters %}
+<div class="col-md-12 item-col paper item-book-col">
+    <a href="{% url 'index' %}{{ book.url }}"><img class="book-display" src="{{ book.coverurl }}"></a>
+    <div class="thumbnail-actions-overlay">
+        <ul class="actions-overlay">
+            {% if book.view_count %}
+            <li><i class="fa fa-eye"> {{ book.view_count }}</i></li>
+            {% else %}
+            <li><i class="fa fa-eye"> 0</i></li>
+            {% endif %}
+            {% if book|userfavoritedbook:user %}
+            <li><i id="book-heart-{{book.id}}" class="fa fa-heart favorited" onclick="unfavoriteBook({{ book.id }});" ></i> <span>{{ book.favorite_cnt }}</span></li>
+            {% else %}
+            <li><i id="book-heart-{{book.id}}" class="fa fa-heart-o notfavorited" onclick="favoriteBook({{ book.id }});" ></i> <span>{{ book.favorite_cnt }}</span></li>
+            {% endif %}
+            <li><i class="fa fa-comments"> {{ book.comment_cnt }}</i></li>
+        </ul>
+    </div>
+    <h5>{{ book.title }}</h5>
+    <div class="item-footer">
+        <a href="{% url 'index' %}book/{{book.title_url}}" title="Scenes for {{ book.title }}"><p><i class="fa fa-file-text-o"> Scenes</i></span></p></a>
+    <a href="javascript:void(0);" disabled='true' title="Author {{ book.author }}"><p><i class="fa fa-pencil"> {{ book.author }}</i></span></p></a>
+    </div>
+</div>

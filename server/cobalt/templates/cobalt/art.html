@@ -1,0 +1,126 @@
+{% extends 'cobalt/base.html' %}
+
+{% if art %}
+{% block pagedesc %}{{ art.title }}{% endblock %}
+{% endif %}
+
+{% block body %}
+{% if art %}
+<script type="text/javascript">
+    var bookid={{art.scene.book.id}};
+    var artid={{art.id}};
+    var bookTitleUrl="{{ art.scene.book.title_url }}";
+    mixpanel.track("Art Page Loaded", {
+        artid: artid,
+    });
+</script>
+
+<div class="container main-container">
+    <div class="row">
+        <!-- Book Col -->
+        <div class="col-md-2 col-sm-3 book-detail-col">
+            <!-- Book Row-->
+            <div class="row book-image">
+                <div class="col-md-12 book-standalone-col">
+                    {% include "cobalt/item_book.html" %} 
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Book Row -->
+        </div>
+        <!-- End Book Col -->
+        <!-- Content Col -->
+        <div class="col-md-8 col-sm-6">
+            <div class="row art-title">
+                <h2>{{ art.title }}</h2>
+                <h4><small>By: {{ art.user.username }}</small></h4>
+            </div>
+            <!-- Image Row -->
+            <div class="row">
+                <div class="col-md-3 paper paper-curl-right art-scene-snippet" style="margin-top: 20px;">
+                    <h5><a href="{% url 'index' %}book/{{scene.book.title_url}}/scene/{{scene.title_url}}">{{ scene.title }}</a></h5>
+                    {% if scene.startpage %}
+                    <h5><small>pg. {{ scene.startpage }} - {{ scene.endpage }}</small></h5>
+                    {% endif %}
+                    <p>{{ scene.text }}</p>
+                </div>
+                <div class="col-md-8">
+                    <img class="thumbnail" width="100%" src="{% url 'index' %}artimage/{{ art.title_url }}-{{ art.id }}" title="{{ art.title }}"/>
+                    <div class="thumbnail-actions-overlay">
+                        {% include 'cobalt/action_overlay_art.html' %}
+                    </div>
+                </div>
+            </div>
+            <!--End Image Row -->
+            <!-- Comment row -->
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3 comment-col">
+                    <hr>
+                    <div class="comment-form">
+                        <div class="form-group">
+                            <textarea placeholder="Comment..." id="comment-text-area" class="form-control" rows="3"></textarea>
+                            <span id="comment-error" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="button" onclick="postArtComment({{ art.id }});">Post</button>
+                        </div>
+                    </div>
+                    <!-- Comments -->
+                    {% for comment in art_comments %}
+                        {% include 'cobalt/comment.html' %}
+                    {% endfor %}
+                    <!-- End Comments -->
+                </div>
+            </div>
+            <!-- End Comment Row -->
+        </div>
+        <!-- End Content Col -->
+        <!-- Action Col -->
+        <div class="col-md-2 col-sm-3 action-row paper paper-sm">
+            <a id="add-scene-link" href="javaScript:void(0);"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Scene</a>
+            <a id="add-art-link" href="javaScript:void(0);"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add My Art</a>
+            {% if user == art.user %}
+            <a href="{% url 'index' %}art/{{ art.id }}"><i class="fa fa-edit"></i> Edit Art</a>
+            {% endif %}
+        </div>
+        <!-- End Col -->
+        <!-- Artist Mini Profile -->
+        <div class="col-md-2 col-sm-3 artist-mini-profile-row paper paper-sm">
+            <a href="{% url 'index' %}user/{{ art.user.username }}">
+                <img class="img-circle" src="{% url 'index'%}userprofileimage/{{art.user.id}}" style="width:140px; height:140px" title="{{ art.user.username }}">
+                <h4> {{ art.user.username }}</h4>
+        </a>
+            <hr>
+            <h5>More from user</h5>
+            {% for moreart in more_by_user %}
+            <a href="{% url 'index' %}book/{{ moreart.scene.book.title_url }}/art/{{ moreart.title_url }}"><img class="thumbnail" width="100%" src="{% url 'index' %}artimage/{{ moreart.title_url }}-{{ moreart.id }}"></a>
+            {% endfor %}
+        </div>
+        <!-- End Artist Mini Profile -->
+    </div>
+    <!-- End Row -->
+</div>
+{% else %}
+<!-- No Scene Row -->
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="alert alert-danger">
+            <b>Error</b> No scene found.
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="alert alert-info">
+            If you'd like to see this scene here then send us an email to <strong>hello@castleleaf.com</strong>
+        </div>
+    </div>
+</div>
+<!-- End No Book Row -->
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+{{ block.super }}
+<script src="/static/cobalt/cobalt-book.js"></script>
+{% endblock %}

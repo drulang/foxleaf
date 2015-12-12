@@ -1,0 +1,9 @@
+<div class="art-wall-img">
+    <a href="{% url 'index'%}book/{{ book.title_url}}/art/{{ art.title_url }}"><img src="{% url 'index' %}artimage/{{ art.title_url }}-{{art.id}}" class="art-img" title="{{ art.title }}"></a>
+    <div class="artist-info hidden">
+        <a href="{% url 'index'%}book/{{ book.title_url}}/art/{{ art.title_url }}">
+            <img src="{% url 'index' %}userprofileimage/{{ art.user.id }}" class="artist-img img-circle" title="{{ art.user.username }}">
+        <h4>{{ art.user.username }}</h4>
+    </a>
+    </div>
+</div>

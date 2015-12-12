@@ -1,0 +1,22 @@
+<!-- Select Book Modal Body -->
+<div id="book-modal-body" class="modal-body" style="display:none;">
+  <form>
+     <div class="input-group">
+        <input id="book-search-input"  type="text" class="form-control" placeholder="Find a book...">
+          <span class="input-group-btn">
+              <button id="search-btn" class="btn btn-primary" type="button" onclick="modalSearchBook();"> Search</button>
+          </span>
+      </div><!-- /input-group -->
+  </form>
+  <div class="row">
+      <div class="col-md-12">
+          <div id="book-search-results-group" class="list-group search-results-group">
+              <div id="book-search-error">
+                  <span class="text-danger"></span>
+              </div>
+              <!-- Results Are inserted here -->
+          </div>
+      </div>
+  </div>
+</div>
+<!-- End Select Book Modal Body -->

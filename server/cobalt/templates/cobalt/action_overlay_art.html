@@ -1,0 +1,19 @@
+{% load filters %}
+<ul class="actions-overlay">
+    {% if art.view_count %}
+    <li><i class="fa fa-eye"> {{ art.view_count }}</i></li>
+    {% else %}
+    <li><i class="fa fa-eye"> 0</i></li>
+    {% endif %}
+
+    {% if art|userfavoritedart:user %}
+    <li><i id="art-heart-{{art.id}}" class="fa fa-heart favorited" onclick="unfavoriteArt({{art.id }});" ></i> <span>{{ art.favorite_cnt }}</span></li>
+    {% else %}
+    <li><i id="art-heart-{{art.id}}" class="fa fa-heart-o notfavorited" onclick="favoriteArt({{ art.id }});" ></i> <span>{{ art.favorite_cnt }}</span></li>
+    {% endif %}
+
+    <li><i class="fa fa-comments"> {{ art.comment_cnt }}</i></li>
+    {% if art.devart_url %}
+    <li><a href="{{ art.devart_url}}" title="Original at DeviantArt"><i class="fa fa-deviantart"></i></a></li>
+    {% endif %}
+</ul>

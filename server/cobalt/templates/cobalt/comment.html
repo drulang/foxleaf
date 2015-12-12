@@ -1,0 +1,41 @@
+{% load filters %}
+<div class="media comment-media"> 
+    <div class="media-left">
+        {% if comment.datedeleted %}
+        <a href="#"><img height="40px" width="40px" class="media-object img-circle" src="https://d13yacurqjgara.cloudfront.net/users/2303/avatars/normal/d6e9f198961fe3ed2e7a970ed2dc3f38.png?1379285276"></a>
+        {% else %}
+        <a href="{% url 'index' %}user/{{ comment.user.username }}"><img height="40px" width="40px" class="media-object img-circle" src="/cobalt/userprofileimage/{{ comment.user.id }}"></a>
+        {% endif %}
+    </div>
+    <!-- Comment Body -->
+    <div class="media-body">
+        <h5 class="media-heading"><small><i class="fa fa-minus-square-o" onclick="collapseComment();"></i>{% if not comment.datedeleted %}</small><a href="{% url 'index' %}user/{{ comment.user.username }}">{{ comment.user.username }}</a><small> • 3 hours ago{% endif %}</small></h5>
+        <!-- Comment Body -->
+        <div class="comment-body" commentid="{{ comment.id }}">
+            {% if comment.datedeleted %}
+            <div class="comment">[ deleted ]</div>
+            <ul class="comment-action"></ul>
+            {% else %}
+            <div class="comment">{{ comment.comment }}</div>
+            <ul class="comment-action">
+                <li><span class="upvote-cnt">{{ comment.upvotecnt }}</span><i id="upvote-{{ comment.id}}" class="fa fa-angle-up upvote {% if comment|userlikedcomment:user %}text-success{% endif %}" onclick="upvoteComment({{comment.id}});"></i></li>
+                <li><i id="downvote-{{ comment.id }}" class="fa fa-angle-down downvote {% if comment|userdislikedcomment:user %}text-danger{% endif %}" onclick="downvoteComment({{comment.id}});"></i></li>
+                {% if comment.user.id == request_userid %}
+                <li><a href="javaScript:void(0);" onclick="createEditForm();">Edit</a></li>
+                <li><a href="javaScript:void(0);" onclick="deleteComment({{comment.id}});">Delete</a></li>
+                {% endif %}
+                <li><a href="javaScript:void(0);" onclick="createReplyForm();">Reply</a></li>
+            </ul>
+            {% endif %}
+            <!-- Reply Comment -->
+            {% for reply in comment.replies %}
+                {% with comment=reply %}
+                    {% include 'cobalt/comment.html' %}
+                {% endwith %}
+            {% endfor %}
+            <!-- End reply comment -->
+        </div>
+        <!-- End Comment body -->
+    </div>
+    <!-- End comment body -->
+</div>

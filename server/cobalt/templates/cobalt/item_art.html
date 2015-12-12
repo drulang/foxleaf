@@ -1,0 +1,29 @@
+{% load filters %}
+<div id="art-col-{{ art.id }}" class="col-md-12 item-col paper">
+    <a href="{% url 'index'%}book/{{ art.book.title_url}}/art/{{ art.title_url }}"><img src="{% url 'index' %}artimage/{{ art.title_url }}-{{art.id}}" class="art-img" title="{{ art.title }}"></a>
+    <div class="thumbnail-actions-overlay">
+        {% include 'cobalt/action_overlay_art.html' %}
+    </div>
+    <h5>{{ art.title }}</h5>
+    {% if art.description %}
+    <p>{{ art.description}}</h5>
+    {% else %}
+    <p>{{ art.scene.text }}</h5>
+    {% endif %}
+    <div class="item-footer">
+        <a class="small-profile-img-link" href="{% url 'index' %}user/{{ art.user.username }}"><img class="img-circle user-profile-img" src="{% url 'index'%}userprofileimage/{{ art.user.id }}?size=supersmall"> {{ art.user.username }}</a>
+        <a href="{% url 'index' %}{{ art.book.url }}"><p><i class="fa fa-book"> {{ art.book.title }}</i></p></a>
+
+        {% if art.scene %}
+        <a href="{% url 'index' %}book/{{ art.scene.book.title_url }}/scene/{{ art.scene.title_url }}" title="Scenes for {{ art.scene.book }}"><p><i class="fa fa-file-text-o"> {{ art.scene.title }}</i></span></p></a>
+        {% endif %}
+    </div>
+    {% if art.user == user %}
+    <div class="item-footer edit-content-footer">
+        <ul>
+            <li><a href="{% url 'index' %}art/{{ art.id }}" title="Edit Art"><p><i class="fa fa-edit"> Edit</i></span></p></a></li>
+        <li><a href="javascript:;" title="Delete Art" onclick="deleteArt({{ art.id }});"><p><i class="fa fa-remove"> Delete</i></span></p></a></li>
+        </ul>
+    </div>
+    {% endif %}
+</div>

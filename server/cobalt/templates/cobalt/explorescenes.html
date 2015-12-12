@@ -1,0 +1,45 @@
+{% extends 'cobalt/base.html' %}
+{% load filters %}
+
+{% block body %}
+<script type="text/javascript">
+    mixpanel.track("Explore Scenes Loaded");
+</script>
+
+<!-- Main Container -->
+<div class="container main-container">
+    <div class="row">
+        <!-- Col 1 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_1 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Col 1-->
+
+        <!-- Col 2 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_2 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Col 2 -->
+
+        <!-- Col 3 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_3 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Col 3 -->
+
+        <!-- Column 4 -->
+        <div class="col-md-3 col-sm-6">
+            {% for item in col_4 %}
+                {% include 'cobalt/item.html' %}
+            {% endfor %}
+        </div>
+        <!-- End Column 4 -->
+    </div>
+</div>
+{% endblock %}

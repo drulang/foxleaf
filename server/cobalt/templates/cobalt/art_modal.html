@@ -1,0 +1,118 @@
+<!-- Add Art Modal -->
+<div class="modal fade" id="add-art-modal" tabindex="-1" role="dialog" aria-labelledby="add-art-modalLabel" aria-hidden="true">
+  <div class="modal-dialog add-content-modal">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!-- Add Art Header -->
+        <div id="art-modal-header-conent">
+            <h5 id="add-art-modal-title"  class="modal-title" id="add-art-modalLabel">Add Art to...</h5>
+            <div class="book-title">
+                <h4 id="add-art-modal-title"  class="modal-title" id="add-art-modalLabel"><i class="fa fa-book text-muted"></i> <i>{{ book.title }}</i></h4>
+                <a href="javascript:;" onclick="changeModalContentToBookSelection();">Or select a different book</a>
+            </div>
+        </div>
+        <!-- End Add Art Header -->
+      </div>
+      <!-- End Modal Header -->
+
+
+      <!-- Add Art Modal Body -->
+      <div id="art-modal-body" class="modal-body">
+          <p id="media-error" class="text-danger"></p>
+
+          <!-- Choose Scene Type -->
+          <div id="choose-scene-type" class="row">
+              <div class="col-md-6 col-md-offset-3">
+                  <button id="" type="button" class="btn btn-primary btn-lg btn-block" onclick="showSelectScene('gnrc');">Scene</button>
+                  <hr/>
+                  <button id="" type="button" class="btn btn-primary btn-lg btn-block" onclick="showSelectScene('char');">Character</button>
+                  <hr/>
+                  <button id="" type="button" class="btn btn-primary btn-lg btn-block" onclick="showSelectScene('map');">Map</button>
+                  <hr/>
+                  <button id="" type="button" class="btn btn-primary btn-lg btn-block" onclick="showArtForm();">General art</button>
+              </div>
+          </div>
+          <!-- End Choose Scene Type -->
+
+          <!-- Choose Scene -->
+          <div id="choose-scene" style="display:none;">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div id="book-scene-results-group" class="list-group search-results-group">
+                          <div id="book-scene-error">
+                              <span class="text-danger"></span>
+                          </div>
+                          <h5>Choose a scene</h5>
+                          <!-- Scenes are inserted here -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- End Choose Scene -->
+
+          <!-- Form -->
+          <form id="add-art-form" style="display:none;" action="{% url 'index' %}book/{{book.title_url}}/art">
+               <div class="form-group">
+                   <label for="art-image-file" name="art-iamge" type="file">Art Image</label>
+                   <input id="art-image-file" name="art-image" type="file" data-url="/cobalt/book/{{book.title_url}}/art">
+                   <span id="helpBlock" class="help-block">Currently supported formats are JPEG and PNG</span>
+                   <div id="file-list">
+                       <!-- The file list will be shown here -->
+                   </div>
+               </div>
+              <!-- Art Type -->
+              <div class="row">
+                  <div id="" class="form-group col-xs-6">
+                      <label>Art Type</label>
+                      {% include 'cobalt/art_type_select.html' %}
+                  </div>
+              </div>
+              <!-- Art Title-->
+              <div id="art-title-form-group" class="form-group">
+                <label for="art-title">Art Title</label>
+                <input id="art-title" name="artTitle" placeholder="Art Title" type="text" class="form-control">
+              </div>
+              <!-- Text -->
+              <div id="end-page-form-group" class="form-group">
+                  <label for="art-text">Art Description</label>
+                  <textarea placeholder="(Optional)" id="art-text" name="artText" class="form-control" rows="2"></textarea>
+              </div>
+              <!-- NSFW -->
+               <div class="checkbox">
+                   <label>
+                       <input name="nsfw" id="art-nsfw" type="checkbox"> Contains mature content</input>
+                   </label>
+               </div>
+          </form>
+          <!-- End Form -->
+      </div>
+      <!-- End Add Art Modal Body -->
+      {% include 'cobalt/book_modal_body.html' %}
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+
+        <!-- Add Art Buttons -->
+        <div id="add-art-buttons" style="display:none;">
+            <button type="button" class="btn btn-default pull-left" onclick="goBackFromAddArtModal();">Back</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearLogin();">Close</button>
+            <button id="add-art-save-button" type="button" class="btn btn-success" disabled="true">Save</button>
+        </div>
+        <!-- End Add Art Buttons -->
+
+        <!-- Choose Scene Buttons -->
+        <div id="choose-scene-buttons" style="display:none;">
+            <button type="button" class="btn btn-default pull-left" onclick="resetArtForm();">Back</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="select-scene-next-button" type="button" class="btn btn-default btn-primary" onclick="showArtForm();" disabled="true">Next</button>
+        </div>
+        <!-- End Choose Scene Buttons -->
+
+      </div>
+      <!-- End Modal Footer -->
+    </div>
+  </div>
+</div>
+<!-- End Modal -->

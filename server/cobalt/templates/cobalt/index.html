@@ -1,0 +1,62 @@
+{% extends 'cobalt/base.html' %}
+{% load filters %}
+
+{% block body %}
+<script type="text/javascript">
+    mixpanel.track("Index Page Loaded");
+</script>
+<div id="carousel-main" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-main" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-main" data-slide-to="1"></li>
+    </ol>
+
+    <!-- Wrapper for slider -->
+    <div class="carousel-inner carousel-index">
+        <div class="item active">
+            <img style="height:431px;width:100%;" src="/static/cobalt/img/book.jpg">
+            <div class="carousel-caption-inverse">
+                <!-- Search Container -->
+                <div class="container jumbotron-headline">
+                    <p class="headline">Scenes from your favorite books...</p>
+                    <h1 class="keyword">Illustrated.</h1>
+                    <div class="row">
+                        <div class="col-lg-offset-3 col-lg-6">
+                          <div class="input-group">
+                                <input id="jumbotron-search" class="form-control input-lg" type="text" placeholder="Find a Book, Character, Map...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success btn-lg" type="button" onclick="jumbotronSearch();">Explore</button>
+                                </span>
+                          </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div>
+                </div>
+                <!-- End Search Container -->
+            </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="item">
+            <img style="height:431px;width:100%;" src="/static/cobalt/img/open_book.jpg">
+            <div class="carousel-caption-inverse">
+                <div class="container jumbotron-headline">
+                    <h1 class="keyword">Over {{ book_count }} books<br/><small> and growing</small></h1>
+                    <a style="margin-top:20px;margin-bottom:20px;" class="btn btn-lg btn-success" href="javascript:;" onclick="showLoginModal('signupLink');"><span class="">Join Today!</span></a>
+                </div>
+            </div>
+        </div>
+        <!-- End Item -->
+    </div><!--end carousel-inner -->
+
+    <a class="left carousel-control" href="#carousel-main" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-main" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div><!-- end carousel -->
+<!-- End Search Row -->
+<div class="container main-container">
+    {% include 'cobalt/image_wall.html' %}
+</div>
+{% endblock %}

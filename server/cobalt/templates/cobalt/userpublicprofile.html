@@ -1,0 +1,49 @@
+{% extends 'cobalt/base.html' %}
+{% load filters %}
+
+{% block body %}
+<script type="text/javascript">
+    mixpanel.track("Public Profile Page Loaded", {
+        publicuserid: {{user.id}}
+    });
+</script>
+<div class="container main-container">
+    <!-- Header Row -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img class="img-circle" src="{% url 'index' %}userprofileimage/{{user.id}}" style="width:140px; height:140px">
+            <h4 class="text-display"> {{ user.username }}</h4>
+
+            <ul class="actions-overlay user-actions-overlay">
+                <li><i class="fa fa-leaf"> {{ user.currpoint }}</i></li>
+                <li><i class="fa fa-calendar"> {{ user.datecreated|formatdate }}</i></li>
+                {% if user.location %}
+                <li><i class="fa fa-map-marker"> {{ user.location }}</i></li>
+                {% endif %}
+                {% if user.devart_profile_url %}
+                <li><a href="{{ user.devart_profile_url}}"><i class="fa fa-deviantart"></i></a></li>
+                {% endif %}
+            </ul>
+
+            <p>{{ user.bio }}</p>
+        </div>
+        {% if  user.userstatustyp_id == 'dalck' %}
+        <div class="col-md-8 col-md-offset-2 paper paper-blue devart-lock">
+            <p class="text-info">This account was automatically created due to the excellence of {{ user.username }}'s portfolio on <a href="{{ user.devart_profile_url}}">DeviantArt</a></p> <p class="text-info">If you are this user and would like to unlock your account please send an email to <a href="mailto:hello@foxleaf.io">hello@foxleaf.io</a></p>
+        </div>
+        {% endif %}
+    </div>
+    <hr>
+    <!-- End Header Row -->
+    {% if user.thefirst %}
+    <!-- Badge Row -->
+    <div class="row badge-row">
+        <img class="cobalt-badge" src="/static/cobalt/img/badge/thefirst.png" title="{{ user.username }} was a core user during development"/>
+    </div>
+    <hr>
+    {% endif %}
+    <!-- End Badge Row -->
+    <h3 class="text-center">{{ user.username}}'s Media</h3>
+    {% include 'cobalt/image_wall.html' %}
+</div>
+{% endblock %}
